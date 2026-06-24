@@ -1,0 +1,256 @@
+/* ── Tokens ──────────────────────────────────────────────── */
+:root {
+  --bg:        #F0EFF8;
+  --surface:   #FFFFFF;
+  --ink:       #1A1A2E;
+  --muted:     #7B7B8F;
+  --accent:    #4F46E5;
+  --accent-lt: #EEF2FF;
+  --done-clr:  #16A34A;
+  --done-bg:   #F0FDF4;
+  --danger:    #DC2626;
+  --border:    #E4E4F0;
+  --radius:    10px;
+  --shadow:    0 4px 32px rgba(79, 70, 229, 0.13);
+  --ff:        'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Body ────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  font-family: var(--ff);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px 16px 80px;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 540px;
+  overflow: hidden;
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+.card-header {
+  background: var(--accent);
+  padding: 28px 32px 26px;
+}
+
+.card-header h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.card-header p {
+  margin-top: 6px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Input Section ───────────────────────────────────────── */
+.input-section {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  background: #fff;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.18s, background 0.18s;
+}
+
+#taskInput:focus {
+  border-color: var(--accent);
+  background: #fff;
+}
+
+#taskInput::placeholder {
+  color: var(--muted);
+}
+
+#addBtn {
+  padding: 12px 22px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s, transform 0.1s;
+}
+
+#addBtn:hover  { background: #4338CA; }
+#addBtn:active { transform: scale(0.97); }
+
+/* ── Stats Bar ───────────────────────────────────────────── */
+.stats {
+  display: flex;
+  gap: 24px;
+  padding: 12px 28px;
+  background: var(--accent-lt);
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 700;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Task List ───────────────────────────────────────────── */
+#taskList {
+  list-style: none;
+  padding: 12px 0;
+  min-height: 80px;
+  background: #fff;
+}
+
+/* ── Empty State ─────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+  display: block;
+}
+
+.empty-state svg {
+  display: block;
+  margin: 0 auto 14px;
+  opacity: 0.3;
+}
+
+.empty-state p {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+/* ── Task Item ───────────────────────────────────────────── */
+li.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 26px;
+  border-bottom: 1px solid var(--border);
+  animation: slideIn 0.22s ease;
+  transition: background 0.15s;
+}
+
+li.task-item:last-child { border-bottom: none; }
+li.task-item:hover      { background: #FAFAFE; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Complete Button ─────────────────────────────────────── */
+.btn-complete {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.18s, background 0.18s;
+  padding: 0;
+}
+
+.btn-complete:hover { border-color: var(--done-clr); }
+.btn-complete .check-icon { display: none; }
+
+/* ── Task Name ───────────────────────────────────────────── */
+.task-name {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  word-break: break-word;
+  transition: color 0.18s;
+}
+
+/* ── Delete Button ───────────────────────────────────────── */
+.btn-delete {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-delete:hover {
+  color: var(--danger);
+  background: #FEF2F2;
+}
+
+/* ── Done State ──────────────────────────────────────────── */
+li.task-item.done { background: var(--done-bg); }
+
+li.task-item.done .btn-complete {
+  background: var(--done-clr);
+  border-color: var(--done-clr);
+}
+
+li.task-item.done .btn-complete .check-icon { display: block; }
+
+li.task-item.done .task-name {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+.card-footer {
+  padding: 14px 26px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  background: #fff;
+}
+
+#clearDoneBtn {
+  background: transparent;
+  border: none;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+#clearDoneBtn:hover {
+  color: var(--danger);
+  background: #FEF2F2;
+}
