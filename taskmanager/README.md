@@ -68,4 +68,4 @@ npx serve .
 
 ## 👤 Author
 
-*Submitted as Assignment 1 — Simple Task Manager*
+*Arunima Nithin Nair*
